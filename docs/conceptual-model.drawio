@@ -1,0 +1,47 @@
+<mxfile host="65bd71144e">
+    <diagram id="cklsRKjX6rTCee49qPdb" name="ページ1">
+        <mxGraphModel dx="808" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="対戦開始" style="html=1;" vertex="1" parent="1">
+                    <mxGeometry x="414" y="260" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="盤面" style="html=1;" vertex="1" parent="1">
+                    <mxGeometry x="610" y="360" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="石" style="html=1;" vertex="1" parent="1">
+                    <mxGeometry x="610" y="250" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="勝敗" style="html=1;" vertex="1" parent="1">
+                    <mxGeometry x="414" y="370" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;dashed=1;" edge="1" parent="1" source="6" target="4">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="白と黒がある" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+                    <mxGeometry x="630" y="90" width="80" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="プレイヤー" style="html=1;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="260" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="8">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="254" y="285" as="sourcePoint"/>
+                        <mxPoint x="414" y="284.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" connectable="0" vertex="1" parent="10">
+                    <mxGeometry x="-1" relative="1" as="geometry">
+                        <mxPoint x="10" y="-4" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="*" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" connectable="0" vertex="1" parent="10">
+                    <mxGeometry x="1" relative="1" as="geometry">
+                        <mxPoint x="-14" y="-4" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
