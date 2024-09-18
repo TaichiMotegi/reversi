@@ -1,17 +1,11 @@
-import express from "express";
 import { GameGateway } from "../dataaccess/gameGateway";
-import { TurnGateway } from "../dataaccess/turnGateway";
-import { SquareGateway } from "../dataaccess/squareGateway";
 import { connectMySQL } from "../dataaccess/connection";
-import { DARK, INITIAL_BOARD } from "../application/constants";
-import { TurnRepository } from "../domain/turnRepository";
-import { Board } from "../domain/board";
-import { firstTurn, Turn } from "../domain/turn";
+import { TurnRepository } from "../domain/turn/turnRepository";
+import { firstTurn } from "../domain/turn/turn";
+import { GameRepository } from "../domain/game/gameRepository";
+import { Game } from "../domain/game/game";
 
-const gameGateway = new GameGateway();
-const turnGateway = new TurnGateway();
-const squareGateway = new SquareGateway();
-
+const gameRepository = new GameRepository();
 const turnRepository = new TurnRepository();
 
 export class GameService {
@@ -23,9 +17,13 @@ export class GameService {
     try {
       await conn.beginTransaction();
 
-      const gameRecord = await gameGateway.insert(conn, now);
+      const game = await gameRepository.save(conn, new Game(undefined, now));
 
-      const turn = firstTurn(gameRecord.id, now);
+      if (!game.id) {
+        throw new Error("Game ID not exist");
+      }
+
+      const turn = firstTurn(game.id, now);
 
       await turnRepository.save(conn, turn);
 
