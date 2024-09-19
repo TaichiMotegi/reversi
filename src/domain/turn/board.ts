@@ -35,6 +35,9 @@ export class Board {
     newDiscs[move.point.y][move.point.x] = move.disc;
 
     // ひっくり返す
+    flipPoints.forEach((p) => {
+      newDiscs[p.y][p.x] = move.disc;
+    });
 
     return new Board(newDiscs);
   }
