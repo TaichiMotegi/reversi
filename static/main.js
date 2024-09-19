@@ -3,6 +3,7 @@ const DARK = 1;
 const LIGHT = 2;
 
 const boardElement = document.getElementById("board");
+const nextDiscMessageElement = document.getElementById("next-disc-message");
 
 async function showBoard(turnCount) {
   const response = await fetch(`/api/games/latest/turns/${turnCount}`);
@@ -10,16 +11,20 @@ async function showBoard(turnCount) {
   const board = responseBody.board;
   const nextDisc = responseBody.nextDisc;
 
+  showNextDiscMessage(nextDisc);
+
   while (boardElement.firstChild) {
     boardElement.removeChild(boardElement.firstChild);
   }
 
   board.forEach((line, y) => {
     line.forEach((square, x) => {
+      // <div class="square">
       const squareElement = document.createElement("div");
       squareElement.className = "square";
 
       if (square !== EMPTY) {
+        // <div class="stone dark">
         const stoneElement = document.createElement("div");
         const color = square === DARK ? "dark" : "light";
         stoneElement.className = `stone ${color}`;
@@ -28,8 +33,15 @@ async function showBoard(turnCount) {
       } else {
         squareElement.addEventListener("click", async () => {
           const nextTurnCount = turnCount + 1;
-          await registerTrun(nextTurnCount, nextDisc, x, y);
-          await showBoard(nextTurnCount);
+          const registerTurnResponse = await registerTurn(
+            nextTurnCount,
+            nextDisc,
+            x,
+            y
+          );
+          if (registerTurnResponse.ok) {
+            await showBoard(nextTurnCount);
+          }
         });
       }
 
@@ -38,13 +50,22 @@ async function showBoard(turnCount) {
   });
 }
 
+function showNextDiscMessage(nextDisc) {
+  if (nextDisc) {
+    const color = nextDisc === DARK ? "黒" : "白";
+    nextDiscMessageElement.innerText = `次は${color}の番です`;
+  } else {
+    nextDiscMessageElement.innerText = "";
+  }
+}
+
 async function registerGame() {
   await fetch("/api/games", {
     method: "POST",
   });
 }
 
-async function registerTrun(turnCount, disc, x, y) {
+async function registerTurn(turnCount, disc, x, y) {
   const requestBody = {
     turnCount,
     move: {
@@ -54,7 +75,7 @@ async function registerTrun(turnCount, disc, x, y) {
     },
   };
 
-  await fetch("/api/games/latest/turns", {
+  return await fetch("/api/games/latest/turns", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
