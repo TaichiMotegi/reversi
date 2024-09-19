@@ -76,7 +76,7 @@ export class Board {
     // 上
     checkFlipPoints(0, -1);
     // 左上
-    checkFlipPoints;
+    checkFlipPoints(-1, -1);
     // 左
     checkFlipPoints(-1, 0);
     // 左下
